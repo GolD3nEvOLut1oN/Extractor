@@ -23,7 +23,9 @@ class Productos(scrapy.Item):
     cprice = scrapy.Field()
     date = scrapy.Field()
     page = scrapy.Field()
-
+    internetDiscOverNormal = scrapy.Field()
+    cardDiscOverNormal = scrapy.Field()
+    cardDiscOverInternet = scrapy.Field()
 
 
 
