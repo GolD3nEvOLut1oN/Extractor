@@ -28,29 +28,26 @@ class RipleySpider(scrapy.Spider):
 		item = response.meta['item']
 
 		for product in response.css('.catalog-product'):
-			if (not product.css('.catalog-product-unavailable-text')):
-				url_product = str(product.css('.catalog-product::attr(href)').extract_first()).strip()
-				img_product = str(product.css('img::attr(data-src)').extract_first()).strip()
-				name_product = str(product.css('.catalog-product-name::text').extract_first()).strip()
-				normal_price = str(product.css('span.catalog-product-list-price::text').extract_first()).strip()
-				best_price = str(product.css('span.catalog-product-offer-price::text').extract_first()).strip()
-				card_price = str(product.css('span.catalog-product-card-price::text').extract_first()).strip()
+			url_product = str(product.css('.catalog-product::attr(href)').extract_first()).strip()
+			img_product = str(product.css('img::attr(data-src)').extract_first()).strip()
+			name_product = str(product.css('.catalog-product-name::text').extract_first()).strip()
+			normal_price = str(product.css('span.catalog-product-list-price::text').extract_first()).strip()
+			best_price = str(product.css('span.catalog-product-offer-price::text').extract_first()).strip()
+			card_price = str(product.css('span.catalog-product-card-price::text').extract_first()).strip()
 
-				normal_price = ''.join(x for x in normal_price if x.isdigit())
-				best_price = ''.join(x for x in best_price if x.isdigit())
-				card_price = ''.join(x for x in card_price if x.isdigit())
+			normal_price = ''.join(x for x in normal_price if x.isdigit())
+			best_price = ''.join(x for x in best_price if x.isdigit())
+			card_price = ''.join(x for x in card_price if x.isdigit())
 
-				item['url'] = 'https://simple.ripley.cl' + url_product
-				item['img'] = 'https:' + img_product
-				item['name'] = name_product
-				item['price'] = normal_price
-				item['bprice'] = best_price
-				item['cprice'] = card_price
-				item['date'] = time.strftime("%d/%m/%Y")
+			item['url'] = 'https://simple.ripley.cl' + url_product
+			item['img'] = 'https:' + img_product
+			item['name'] = name_product
+			item['price'] = normal_price
+			item['bprice'] = best_price
+			item['cprice'] = card_price
+			item['date'] = time.strftime("%d/%m/%Y")
 
-				yield item
-			else:
-				pass
+			yield item
 
 		next_page_url = response.xpath('//ul[@class="pagination"]//li[position() = (last())]/a/@href').extract_first()
 		if next_page_url is not None:
