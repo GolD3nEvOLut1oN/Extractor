@@ -44,6 +44,8 @@ class TestingSpider(scrapy.Spider):
 						curentUrl = cat_url
 						nextUrl = '{"currentPage":' + nextPage + ',"navState":"' + curentUrl +  '"}'
 						nextUrl = nextUrl.replace("http://www.falabella.com", "")
+						nextUrl = nextUrl.replace("https://www.falabella.com", "")
+						nextUrl = nextUrl.replace("www.falabella.com", "")
 						nextUrl = nextUrl.replace("/falabella-cl", "")
 						api_url = 'http://www.falabella.com/rest/model/falabella/rest/browse/BrowseActor/get-product-record-list?'
 						nextUrl = api_url + str(urllib.parse.quote(nextUrl, safe='~()*!.\''))
@@ -67,6 +69,8 @@ class TestingSpider(scrapy.Spider):
 					curentUrl = cat_url
 					nextUrl = '{"currentPage":' + nextPage + ',"navState":"' + curentUrl +  '"}'
 					nextUrl = nextUrl.replace("http://www.falabella.com", "")
+					nextUrl = nextUrl.replace("https://www.falabella.com", "")
+					nextUrl = nextUrl.replace("www.falabella.com", "")
 					nextUrl = nextUrl.replace("/falabella-cl", "")
 					api_url = 'http://www.falabella.com/rest/model/falabella/rest/browse/BrowseActor/get-product-record-list?'
 					nextUrl = api_url + str(urllib.parse.quote(nextUrl, safe='~()*!.\''))
@@ -86,6 +90,8 @@ class TestingSpider(scrapy.Spider):
 			curentUrl = response.url
 			nextUrl = '{"currentPage":' + nextPage + ',"navState":"' + curentUrl +  '"}'
 			nextUrl = nextUrl.replace("http://www.falabella.com", "")
+			nextUrl = nextUrl.replace("https://www.falabella.com", "")
+			nextUrl = nextUrl.replace("www.falabella.com", "")
 			nextUrl = nextUrl.replace("/falabella-cl", "")
 			api_url = 'http://www.falabella.com/rest/model/falabella/rest/browse/BrowseActor/get-product-record-list?'
 			nextUrl = api_url + str(urllib.parse.quote(nextUrl, safe='~()*!.\''))
@@ -119,12 +125,21 @@ class TestingSpider(scrapy.Spider):
 						item['cprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
 					else:
 						pass
+				'''
+				if item['price'] and item['price'] > 0 and item['bprice'] and item['bprice'] > 0:
+					item['internetDiscOverNormal'] = int(round((1-(item['bprice']/item['price']))*100,0))
+				if item['price'] and item['price'] > 0 and item['cprice'] and item['cprice'] > 0:
+					item['cardDiscOverNormal'] = int(round((1-(item['cprice']/item['price']))*100,0))
+				if item['cprice'] and item['cprice'] > 0 and item['bprice'] and item['bprice'] > 0:
+					item['cardDiscOverInternet'] = int(round((1-(item['cprice']/item['bprice']))*100,0))
+				'''
 				item['date'] = time.strftime("%d/%m/%Y")
 				item['page'] = data['state']['curentPage']
 				item['cat_url'] = response.meta['cat_url']
 				item['up_category_url'] = response.meta['up_cat_url']
 				item['category'] = response.meta['cat']
 				item['up_category'] = response.meta['up_cat']
+				
 
 				yield item
 
@@ -135,6 +150,7 @@ class TestingSpider(scrapy.Spider):
 
 				nextUrl = '{"currentPage":' + nextPage + ',"navState":"' + curentUrl +  '"}'
 				nextUrl = nextUrl.replace("http://www.falabella.com", "")
+				nextUrl = nextUrl.replace("https://www.falabella.com", "")
 				nextUrl = nextUrl.replace("/falabella-cl", "")
 
 				api_url = 'http://www.falabella.com/rest/model/falabella/rest/browse/BrowseActor/get-product-record-list?'
