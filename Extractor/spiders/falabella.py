@@ -114,7 +114,7 @@ class TestingSpider(scrapy.Spider):
 		if data['success']:
 			for product in data['state']['resultList']:
 				item = Productos()
-				item['url'] = 'https://falabella.com' + product['url']
+				item['url'] = 'https://www.falabella.com' + product['url']
 				item['name'] = product['title']
 				for price in product['prices']:
 					if price['type'] and price['type'] == 3:
