@@ -133,8 +133,8 @@ class TestingSpider(scrapy.Spider):
 				if item['cprice'] and item['cprice'] > 0 and item['bprice'] and item['bprice'] > 0:
 					item['cardDiscOverInternet'] = int(round((1-(item['cprice']/item['bprice']))*100,0))
 				'''
-				item['date'] = time.strftime("%d/%m/%Y")
-				item['page'] = data['state']['curentPage']
+				#item['date'] = time.strftime("%d/%m/%Y")
+				#item['page'] = data['state']['curentPage']
 				item['cat_url'] = response.meta['cat_url']
 				item['up_category_url'] = response.meta['up_cat_url']
 				item['category'] = response.meta['cat']

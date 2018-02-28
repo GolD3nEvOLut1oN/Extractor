@@ -41,12 +41,12 @@ class RipleySpider(scrapy.Spider):
 				card_price = ''.join(x for x in card_price if x.isdigit())
 
 				item['url'] = 'https://simple.ripley.cl' + url_product
-				item['img'] = 'https:' + img_product
+				#item['img'] = 'https:' + img_product
 				item['name'] = name_product
 				item['price'] = normal_price
 				item['bprice'] = best_price
 				item['cprice'] = card_price
-				item['date'] = time.strftime("%d/%m/%Y")
+				#item['date'] = time.strftime("%d/%m/%Y")
 
 				yield item
 			else:

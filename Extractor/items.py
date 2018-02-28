@@ -15,17 +15,17 @@ class Productos(scrapy.Item):
     up_category = scrapy.Field()
     name = scrapy.Field()
     url = scrapy.Field()
-    img	= scrapy.Field()
+    #img	= scrapy.Field()
     category = scrapy.Field()
     cat_url = scrapy.Field()
     price = scrapy.Field()
     bprice = scrapy.Field()
     cprice = scrapy.Field()
-    date = scrapy.Field()
-    page = scrapy.Field()
-    internetDiscOverNormal = scrapy.Field()
-    cardDiscOverNormal = scrapy.Field()
-    cardDiscOverInternet = scrapy.Field()
+    #date = scrapy.Field()
+    #page = scrapy.Field()
+    #internetDiscOverNormal = scrapy.Field()
+    #cardDiscOverNormal = scrapy.Field()
+    #cardDiscOverInternet = scrapy.Field()
 
 
 
