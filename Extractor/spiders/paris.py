@@ -30,19 +30,19 @@ class ParisSpider(scrapy.Spider):
 	def getProducts(self,response):
 		item = response.meta['item']
 
-		for product in response.css('div#product'):
+		for product in response.css('div[class*=boxProduct]'):
 			available = str(product.css('div#tipos_de_entrega > div[id*=stock_msg]::text').extract_first()).strip()
 			if 'SIN STOCK' not in available:
-				url_product = str(product.css('div[class*=description_fixedwidth] > a::attr(href)').extract_first()).strip()
-				img_product = str(product.css('img::attr(data-src)').extract_first()).strip()
-				name_product = str(product.css('div[class*=description_fixedwidth] > a::text').extract_first()).strip()
-				normal_price = str(product.css('div[class*=precio_normal]::text').extract_first()).strip()
-				if "INTERNET" in str(product.css('div[class*=precio_internet]::text').extract_first()).strip().upper():
-					best_price = str(product.css('div[class*=precio_internet]::text').extract_first()).strip()
-					card_price = str(product.css('div[class*=offerPrice]::text').extract_first()).strip()
-				else:
-					best_price = str(product.css('div[class*=offerPrice]::text').extract_first()).strip()
-					card_price = ""
+				url_product = str(product.css('p[class*=text] > a::attr(href)').extract_first()).strip()
+				img_product = str(product.css('div[class*=item] > a[class*=pdp] > img::attr(data-src)').extract_first()).strip()
+				name_product = str(product.css('p[class*=text] > a::text').extract_first()).strip()
+				normal_price = str(product.css('p[class*=normal] > span::text').extract_first()).strip()
+				#if "INTERNET" in str(product.css('div[class*=precio_internet]::text').extract_first()).strip().upper():
+				best_price = str(product.css('p[class*=internet]::attr(data-internet-price)').extract_first()).strip()
+				card_price = str(product.css('div[class*=itemPrice] > p[class*=price]::text').extract_first()).strip()
+				#else:
+				#	best_price = str(product.css('div[class*=offerPrice]::text').extract_first()).strip()
+				#	card_price = ""
 
 				normal_price = ''.join(x for x in normal_price if x.isdigit())
 				best_price = ''.join(x for x in best_price if x.isdigit())
