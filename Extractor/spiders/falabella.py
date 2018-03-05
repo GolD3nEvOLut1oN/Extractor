@@ -117,9 +117,9 @@ class TestingSpider(scrapy.Spider):
 				item['url'] = 'https://www.falabella.com' + product['url']
 				item['name'] = product['title']
 				for price in product['prices']:
-					if price['type'] and price['type'] == 3:
+					if price['type'] == 3:
 						item['bprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
-					elif price['type'] and price['type'] == 2:
+					elif price['type'] == 2:
 						item['price'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
 					elif price['opportunidadUnica']:
 						item['cprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
