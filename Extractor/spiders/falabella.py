@@ -111,7 +111,7 @@ class TestingSpider(scrapy.Spider):
 		
 		data = json.loads(response.text)
 
-		if data['success']:
+		if data['success'] = 'true':
 			for product in data['state']['resultList']:
 				item = Productos()
 				item['url'] = 'https://www.falabella.com' + product['url']
