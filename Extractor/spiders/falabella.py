@@ -111,17 +111,23 @@ class TestingSpider(scrapy.Spider):
 		
 		data = json.loads(response.text)
 
-		if data['success'] = 'true':
+		if data['success'] and 'resultList' in data:
 			for product in data['state']['resultList']:
 				item = Productos()
 				item['url'] = 'https://www.falabella.com' + product['url']
 				item['name'] = product['title']
 				for price in product['prices']:
 					if price['type'] == 3:
-						item['bprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
+						if 'formattedLowestPrice' in price:
+							item['bprice'] = ''.join(x for x in price['formattedLowestPrice'] if x.isdigit())
+						if 'originalPrice' in price:
+							item['bprice'] = ''.join(x for x in price['formattedLowestPrice'] if x.isdigit())
 					elif price['type'] == 2:
-						item['price'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
-					elif price['opportunidadUnica']:
+						if 'formattedLowestPrice' in price:
+							item['price'] = ''.join(x for x in price['formattedLowestPrice'] if x.isdigit())
+						if 'originalPrice' in price:
+							item['price'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
+					elif price['opportunidadUnica'] == 'true':
 						item['cprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
 					else:
 						pass
