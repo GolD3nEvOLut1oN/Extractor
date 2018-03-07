@@ -127,7 +127,7 @@ class TestingSpider(scrapy.Spider):
 							item['price'] = ''.join(x for x in price['formattedLowestPrice'] if x.isdigit())
 						if 'originalPrice' in price:
 							item['price'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
-					elif price['opportunidadUnica'] == 'true':
+					elif price['type'] == 1:
 						item['cprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
 					else:
 						pass
