@@ -60,7 +60,7 @@ class ParisSpider(scrapy.Spider):
 				yield item
 
 		#pagination
-		if (response.xpath('//span[@id="plp_pagination_next_top"]')):
+		if (response.xpath('//span[contains(@class,"active_next")]')):
 
 			#sacar la cantidad de items totales del DIV que muestra los items, hacer un substring para comparar.
 			str_Cantidad_Productos = str(response.xpath('//p[contains(@class,"prodToProd")]/text()')[0].extract()).strip()
