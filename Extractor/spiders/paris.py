@@ -74,7 +74,7 @@ class ParisSpider(scrapy.Spider):
 			#y seguir el mismo script.
 			url = 'https://www.paris.cl/webapp/wcs/stores/servlet/AjaxCatalogSearchResultView?searchTermScope=&searchType=1000&filterTerm=&orderBy=2&maxPrice=&showResultsPage=true&langId=-5&beginIndex&sType=SimpleSearch&metaData=&pageSize=30&manufacturer=&resultCatEntryType=&catalogId=40000000629&pageView=image&searchTerm=&minPrice=&categoryId&storeId=10801'
 			cat_extracted = response.xpath('//a[contains(@class,"activeView")]/@href')[0].extract()
-			cat_extracted = re.search('Price=&(.+?)&storeId',cat_extracted)
+			cat_extracted = re.search('minPrice=&(.+?)&storeId',cat_extracted)
 
 			if cat_extracted:
 				categoryId = cat_extracted.group(1)
