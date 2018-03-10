@@ -5,7 +5,7 @@ import time
 from Extractor.items import Productos
 import re
 import random
-
+from scrapy.http import FormRequest
 
 class ParisSpider(scrapy.Spider):
 	name = 'paris'
@@ -90,12 +90,18 @@ class ParisSpider(scrapy.Spider):
 				if x > 1:
 					items = items + 30
 				pagination = url.replace("beginIndex", "beginIndex=" + str(items))
-				request = scrapy.Request(pagination, callback=self.getProducts)
+				
+				frmdata = {"searchResultsPageNum":str(items),"searchResultsURL": pagination}
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata)
+				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
 
 			if itemsRestantes > 0:
 				pagination = url.replace("beginIndex", "beginIndex=" + str(int(itemsTotal) - int(itemsRestantes)))
-				request = scrapy.Request(pagination, callback=self.getProducts)
+
+				frmdata = {"searchResultsPageNum":str(int(itemsTotal) - int(itemsRestantes)),"searchResultsURL": pagination}
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata)
+				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
