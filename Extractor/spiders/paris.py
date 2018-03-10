@@ -3,6 +3,7 @@ encoding = "utf-8"
 import scrapy
 import time
 from Extractor.items import Productos
+import re
 
 
 class ParisSpider(scrapy.Spider):
@@ -17,7 +18,7 @@ class ParisSpider(scrapy.Spider):
 			#if 'SEARCHDISPLAY' not in menu_element.css('a::attr(href)').extract_first():
 			cat_name = str(menu_element.css('a::text').extract_first()).strip()
 			url = str(menu_element.css('a::attr(href)').extract_first()).strip()
-			if cat_name and 'SEARCH' in url.upper():
+			if cat_name and 'SEARCHDISPLAY' not in url.upper():
 				item = Productos()
 				item['category'] = cat_name
 				item['cat_url'] = url
@@ -34,7 +35,7 @@ class ParisSpider(scrapy.Spider):
 			available = str(product.css('div#tipos_de_entrega > div[id*=stock_msg]::text').extract_first()).strip()
 			if 'SIN STOCK' not in available:
 				url_product = str(product.css('p[class*=text] > a::attr(href)').extract_first()).strip()
-				img_product = str(product.css('div[class*=item] > a[class*=pdp] > img::attr(data-src)').extract_first()).strip()
+				#img_product = str(product.css('div[class*=item] > a[class*=pdp] > img::attr(data-src)').extract_first()).strip()
 				name_product = str(product.css('p[class*=text] > a::text').extract_first()).strip()
 				normal_price = str(product.css('p[class*=normal] > span::text').extract_first()).strip()
 				#if "INTERNET" in str(product.css('div[class*=precio_internet]::text').extract_first()).strip().upper():
@@ -49,30 +50,49 @@ class ParisSpider(scrapy.Spider):
 				card_price = ''.join(x for x in card_price if x.isdigit())
 
 				item['url'] = url_product
-				item['img'] =  img_product[:img_product.find('?')]
+				#item['img'] =  img_product[:img_product.find('?')]
 				item['name'] = name_product
 				item['price'] = normal_price
 				item['bprice'] = best_price
 				item['cprice'] = card_price
-				item['date'] = time.strftime("%d/%m/%Y")
+				#item['date'] = time.strftime("%d/%m/%Y")
 
 				yield item
 
 		#pagination
-		if (response.xpath('//*[@id="WC_CatalogSearchResultDisplay_div_1"]/div[1]/div[1]/b/text()').extract()[0]):
-			itemsTotal = int(response.xpath('//*[@id="WC_CatalogSearchResultDisplay_div_1"]/div[1]/div[1]/b/text()').extract()[0])
+		if (response.xpath('//span[@id="plp_pagination_next_top"]')):
+
+			#sacar la cantidad de items totales del DIV que muestra los items, hacer un substring para comparar.
+			str_Cantidad_Productos = str(response.xpath('//p[contains(@class,"prodToProd")]/text()')[0].extract()).strip()
+			if len(str_Cantidad_Productos[(str_Cantidad_Productos.rfind(" ") + 1):-1]) > 0:
+				itemsTotal = str_Cantidad_Productos[(str_Cantidad_Productos.rfind(" ") + 1):-1]
+				itemsTotal = ''.join(x for x in itemsTotal if x.isdigit())
 			pages = int(round((int(itemsTotal) / int(self.pageSize)) - 0.5))
+			#redondear la cantidad de paginas.
+			#luego calcular los items restantes
+			#y seguir el mismo script.
+			url = 'http://www.paris.cl/webapp/wcs/stores/servlet/SearchDisplay?searchTermScope=&searchType=1000&filterTerm=&maxPrice=&orderBy=2&showResultsPage=true&sType=SimpleSearch&metaData=&pageSize=30&manufacturer=&resultCatEntryType=&searchTerm=&catalogId=40000000629&minPrice=&categoryId&storeId=10801'
+			cat_extracted = response.xpath('//input[@id="headerDisplayCurrentURL"]/@value')[0].extract()
+			cat_extracted = re.search('By=2&(.+?)&storeId',cat_extracted)
+
+			if cat_extracted:
+				categoryId = cat_extracted.group(1)
+
+			url = url.replace("categoryId",categoryId)
+
+
 			items = self.pageSize
 			itemsRestantes = int(itemsTotal) % int(self.pageSize)
+
 			for x in str(pages):
 				items = items + 30
-				pagination = item['cat_url'] + "?beginIndex=" + str(items)
+				pagination = url + "&beginIndex=" + str(items)
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
 
 			if itemsRestantes > 0:
-				pagination = item['cat_url'] + "?beginIndex=" + str(itemsTotal - itemsRestantes)
+				pagination = url + "&beginIndex=" + str(int(itemsTotal) - int(itemsRestantes))
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
