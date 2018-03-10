@@ -90,7 +90,7 @@ class ParisSpider(scrapy.Spider):
 				pagination = url + "&beginIndex=" + str(items)
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
-				sleepy = 0.5 # * random.uniform(1, 1.5)
+				sleepy = 1 # * random.uniform(1, 1.5)
 				time.sleep(sleepy)
 				yield request
 
@@ -98,6 +98,6 @@ class ParisSpider(scrapy.Spider):
 				pagination = url + "&beginIndex=" + str(int(itemsTotal) - int(itemsRestantes))
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
-				sleepy = 0.25 #* random.uniform(1, 1.5)
+				sleepy = 1 #* random.uniform(1, 1.5)
 				time.sleep(sleepy)
 				yield request
