@@ -72,9 +72,9 @@ class ParisSpider(scrapy.Spider):
 			#redondear la cantidad de paginas.
 			#luego calcular los items restantes
 			#y seguir el mismo script.
-			url = 'http://www.paris.cl/webapp/wcs/stores/servlet/SearchDisplay?searchTermScope=&searchType=1000&filterTerm=&maxPrice=&orderBy=2&showResultsPage=true&sType=SimpleSearch&metaData=&pageSize=30&manufacturer=&resultCatEntryType=&searchTerm=&catalogId=40000000629&minPrice=&categoryId&storeId=10801'
-			cat_extracted = response.xpath('//input[@id="headerDisplayCurrentURL"]/@value')[0].extract()
-			cat_extracted = re.search('By=2&(.+?)&storeId',cat_extracted)
+			url = 'https://www.paris.cl/webapp/wcs/stores/servlet/AjaxCatalogSearchResultView?searchTermScope=&searchType=1000&filterTerm=&orderBy=2&maxPrice=&showResultsPage=true&langId=-5&beginIndex&sType=SimpleSearch&metaData=&pageSize=30&manufacturer=&resultCatEntryType=&catalogId=40000000629&pageView=image&searchTerm=&minPrice=&categoryId&storeId=10801'
+			cat_extracted = response.xpath('//a[contains(@class,"activeView")]/@href')[0].extract()
+			cat_extracted = re.search('Price=&(.+?)&storeId',cat_extracted)
 
 			if cat_extracted:
 				categoryId = cat_extracted.group(1)
@@ -87,17 +87,13 @@ class ParisSpider(scrapy.Spider):
 
 			for x in str(pages):
 				items = items + 30
-				pagination = url + "&beginIndex=" + str(items)
+				pagination = url.replace("beginIndex", "beginIndex=" + str(items))
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
-				sleepy = 1 # * random.uniform(1, 1.5)
-				time.sleep(sleepy)
 				yield request
 
 			if itemsRestantes > 0:
-				pagination = url + "&beginIndex=" + str(int(itemsTotal) - int(itemsRestantes))
+				pagination = url.replace("beginIndex", "beginIndex=" + str(int(itemsTotal) - int(itemsRestantes)))
 				request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
-				sleepy = 1 #* random.uniform(1, 1.5)
-				time.sleep(sleepy)
 				yield request
