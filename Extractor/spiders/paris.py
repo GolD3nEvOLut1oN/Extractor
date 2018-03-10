@@ -9,7 +9,7 @@ import re
 class ParisSpider(scrapy.Spider):
 	name = 'paris'
 	allowed_domains = ['paris.cl']
-	start_urls = ['https://www.paris.cl/tienda/es/paris']
+	start_urls = ['http://www.paris.cl/tienda/es/paris']
 
 	pageSize = 30
 
@@ -60,7 +60,7 @@ class ParisSpider(scrapy.Spider):
 				yield item
 
 		#pagination
-		if (response.xpath('//span[contains(@class,"active_next")]')):
+		#if (response.xpath('//span[contains(@class,"active_next")]')):
 
 			#sacar la cantidad de items totales del DIV que muestra los items, hacer un substring para comparar.
 			str_Cantidad_Productos = str(response.xpath('//p[contains(@class,"prodToProd")]/text()')[0].extract()).strip()
