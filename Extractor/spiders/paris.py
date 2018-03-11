@@ -92,7 +92,7 @@ class ParisSpider(scrapy.Spider):
 				pagination = url.replace("beginIndex", "beginIndex=" + str(items))
 				
 				frmdata = {"searchResultsPageNum":str(items),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': 'true'})
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True}, meta={'dont_merge_cookies': True})
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
@@ -101,7 +101,7 @@ class ParisSpider(scrapy.Spider):
 				pagination = url.replace("beginIndex", "beginIndex=" + str(int(itemsTotal) - int(itemsRestantes)))
 
 				frmdata = {"searchResultsPageNum":str(int(itemsTotal) - int(itemsRestantes)),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': 'true'})
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True}, meta={'dont_merge_cookies': True})
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
