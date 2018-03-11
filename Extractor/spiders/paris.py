@@ -90,9 +90,9 @@ class ParisSpider(scrapy.Spider):
 				if x > 1:
 					items = items + 30
 				pagination = url.replace("beginIndex", "beginIndex=" + str(items))
-				
+				response.headers = {}
 				frmdata = {"searchResultsPageNum":str(items),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True}, meta={'dont_merge_cookies': True})
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True})
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
@@ -100,8 +100,9 @@ class ParisSpider(scrapy.Spider):
 			if itemsRestantes > 0:
 				pagination = url.replace("beginIndex", "beginIndex=" + str(int(itemsTotal) - int(itemsRestantes)))
 
+				response.headers = {}
 				frmdata = {"searchResultsPageNum":str(int(itemsTotal) - int(itemsRestantes)),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True}, meta={'dont_merge_cookies': True})
+				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata, cookies={'WCEXT_TRKSTORE': '10801', 'WC_SESSION_ESTABLISHED': True})
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
