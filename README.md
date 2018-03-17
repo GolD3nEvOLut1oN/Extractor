@@ -3,14 +3,18 @@ Spiders for retrieve prices &amp; products from most ecommerces in Chile
 
 ## ***Working Stores***
 
-- Falabella <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width="15" height="15" />
-- Ripley <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width="15" height="15" />
-- Paris <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width="15" height="15" />
-- Abcdin
-- Corona
-- Hites
-- Lider
-- LaPolar
+
+
+Store | Status | Last Update
+--- | --- | --- 
+Falabella | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
+Ripley | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
+Paris | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
+Abcdin | 
+Corona | 
+Hites | 
+Lider | 
+LaPolar | 
 
 ## ***Features***
 - Dinamically gets all categories
