@@ -2,9 +2,6 @@
 Spiders for retrieve prices &amp; products from most ecommerces in Chile
 
 ## ***Working Stores***
-
-
-
 Store | Status | Last Update
 --- | --- | --- 
 Falabella | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
@@ -18,7 +15,7 @@ LaPolar | not implemented yet | -
 
 ## ***Features***
 - Dynamically gets all categories
-- Navigate through the website pages automatically
+- Navigate through the website's pages automatically
 - Retrieve all products from each page
 - Download data as a json or csv format
 
@@ -45,6 +42,11 @@ Store Name | String | *not implemented yet*
 - Pip 3
 - Scrapy 1.5.2
 - Ubuntu 16.4 LTS
+- Anaconda 3 (for Windows instances)
+
+## ***Tested on***
+- Windows 10 Pro 64bits
+- Ubuntu 16.4 LTS
 
 ## ***How to install***
 
@@ -55,3 +57,5 @@ Store Name | String | *not implemented yet*
 - Step 3
 ``` some code or command here ```
 
+## ***Usage***
+- In ``` cmd ``` 
