@@ -59,3 +59,21 @@ Store Name | String | *not implemented yet*
 
 ## ***Usage***
 - In ``` cmd ``` 
+
+## ***FAQ***
+- Feel free to ask any question that you have in our Issue section.
+
+## ***Donations***
+If you like my work, you can support by donating me a cup of coffee, it will help me to Code more tools like this. :yum:
+
+- ETH Wallet: 0x038D2Baf953487722A7F58202D7AEC2E68cFC365
+- XLM Wallet: GDMXNQBJMS3FYI4PFSYCCB4XODQMNMTKPQ5HIKOUWBOWJ2P3CF6WASBE
+- XRP Wallet: rhQrkgoV4uza557mW6HbBWMtTDkB7u5yrs
+  - XRP Destination Tag: 118
+- BTC Wallet: 15AtMwTagF5dirSfpEr9oCZ693VfofdUTQ
+- LTC Wallet: LVSs3PfY2YHcz5WP3KZbNgyj18k65gGb26
+- BCH Wallet: 154vdkJXhDmuER7N8qDJ37sGYKdH3owyfU
+- Dash Wallet: XbH2sc8eLsrvvU28mPEZk1Urv28ebftXKY
+
+Made with :heart: by GolD3nEvOLut1oN.
+    
