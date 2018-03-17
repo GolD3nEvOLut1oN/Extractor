@@ -10,16 +10,17 @@ Store | Status | Last Update
 Falabella | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
 Ripley | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
 Paris | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
-Abcdin | 
-Corona | 
-Hites | 
-Lider | 
-LaPolar | 
+Abcdin | not yet | not implemented yet
+Corona | not yet | not implemented yet
+Hites | not yet | not implemented yet
+Lider | not yet | not implemented yet
+LaPolar | not yet | not implemented yet
 
 ## ***Features***
 - Dinamically gets all categories
 - Navigate through the website pages automatically
 - Retrieve all products from each page
+- Download data as a json or csv format
 
 ## ***Data structure***
 
