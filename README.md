@@ -8,13 +8,13 @@ Spiders for retrieve prices &amp; products from most ecommerces in Chile
 Store | Status | Last Update
 --- | --- | --- 
 Falabella | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
-Ripley | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
+Ripley | need updates | 16-Mar-2018
 Paris | <img src="https://www.iconexperience.com/_img/g_collection_png/standard/512x512/ok.png" width=18px;> | 16-Mar-2018
-Abcdin | not yet | not implemented yet
-Corona | not yet | not implemented yet
-Hites | not yet | not implemented yet
-Lider | not yet | not implemented yet
-LaPolar | not yet | not implemented yet
+Abcdin | not implemented yet | -
+Corona | not implemented yet | -
+Hites | not implemented yet | -
+Lider | not implemented yet | -
+LaPolar | not implemented yet | -
 
 ## ***Features***
 - Dinamically gets all categories
@@ -33,8 +33,9 @@ Sub category | String | *Name of category child from Main Category. Ex: "Noteboo
 Sub category URL | String | *URL of category child from Main Category. Ex: "http://www.example.com/Computers/Notebooks_Gamers*
 Normal price | int | *This price usually represents the normal price of the product with no discount*
 Internet price | int | *This price usually means that there is some discount over normal price*
-Card price | int | *This price usually represent the discount with "Store's Credit Card Only" over Normal or Internet price*
+Card price | int | *This price usually represents the discount with "Store's Credit Card Only" over Normal or Internet price*
 Product URL | String | *The URL of the product that we've extracted*
+Product Image | String | *not fully functional*
 Store ID | int | *not implemented yet*
 Store Name | String | *not implemented yet*
 
