@@ -37,13 +37,6 @@ Store ID | int | *not implemented yet*
 Store Name | String | *not implemented yet*
 
 ## ***Requirements***
-- Python 3.6.2
-- Pip 3
-- Scrapy 1.5.2
-- Ubuntu 16.4 LTS
-- Anaconda 3 (for Windows instances)
-
-## ***Requirements***
 | Module | Link
 | --- | ---
 | Scrapy 1.5.2 | 
