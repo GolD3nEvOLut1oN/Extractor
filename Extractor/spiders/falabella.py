@@ -132,9 +132,6 @@ class TestingSpider(scrapy.Spider):
 							item['cprice'] = ''.join(x for x in price['formattedLowestPrice'] if x.isdigit())
 						if 'originalPrice' in price:
 							item['cprice'] = ''.join(x for x in price['originalPrice'] if x.isdigit())
-						
-					else:
-						pass
 				'''
 				if item['price'] and item['price'] > 0 and item['bprice'] and item['bprice'] > 0:
 					item['internetDiscOverNormal'] = int(round((1-(item['bprice']/item['price']))*100,0))
