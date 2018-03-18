@@ -37,12 +37,22 @@ Store ID | int | *not implemented yet*
 Store Name | String | *not implemented yet*
 
 ## ***Requirements***
-
 - Python 3.6.2
 - Pip 3
 - Scrapy 1.5.2
 - Ubuntu 16.4 LTS
 - Anaconda 3 (for Windows instances)
+
+## ***Requirements***
+| Module | Link
+| --- | ---
+| Scrapy 1.5.2 | 
+| Python 3.6.2 |
+| Pip 3 |
+| Ubuntu 16.4 LTS |
+| Anaconda 3 |
+| Scrapy Random User Agent | https://github.com/GolD3nEvOLut1oN/scrapy-random-useragent
+| Scrapy Proxies | https://github.com/GolD3nEvOLut1oN/scrapy-proxies
 
 ## ***Tested on***
 - Windows 10 Pro 64bits
