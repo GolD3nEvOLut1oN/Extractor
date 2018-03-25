@@ -24,7 +24,7 @@ class ParisSpider(scrapy.Spider):
 				item['category'] = cat_name
 				item['cat_url'] = url
 				#navegando por los links
-				request = scrapy.Request(url=url, callback=self.getProducts)
+				request = scrapy.Request(url=url, meta={'dont_redirect': True}, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
 
@@ -91,7 +91,7 @@ class ParisSpider(scrapy.Spider):
 					items = items + 30
 				pagination = url.replace("beginIndex", "beginIndex=" + str(items))
 				frmdata = {"searchResultsPageNum":str(items),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata)
+				request = FormRequest(pagination, meta={'dont_redirect': True}, callback=self.getProducts, formdata=frmdata)
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
@@ -99,7 +99,7 @@ class ParisSpider(scrapy.Spider):
 			if itemsRestantes > 0:
 				pagination = url.replace("beginIndex", "beginIndex=" + str(int(itemsTotal) - int(itemsRestantes)))
 				frmdata = {"searchResultsPageNum":str(int(itemsTotal) - int(itemsRestantes)),"searchResultsURL": pagination}
-				request = FormRequest(pagination, callback=self.getProducts, formdata=frmdata)
+				request = FormRequest(pagination, meta={'dont_redirect': True}, callback=self.getProducts, formdata=frmdata)
 				#request = scrapy.Request(pagination, callback=self.getProducts)
 				request.meta['item'] = item
 				yield request
