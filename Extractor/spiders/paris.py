@@ -10,7 +10,7 @@ from scrapy.http import FormRequest
 class ParisSpider(scrapy.Spider):
 	name = 'paris'
 	allowed_domains = ['paris.cl']
-	start_urls = ['http://www.paris.cl/tienda/es/paris']
+	start_urls = ['http://paris.cl/tienda/es/paris']
 
 	pageSize = 30
 
