@@ -21,25 +21,25 @@ USER_AGENT_LIST = "Extractor/agents.txt"
 #USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = False
+#ROBOTSTXT_OBEY = True
 
 # Retry many times since proxies often fail
-RETRY_TIMES = 5
+#RETRY_TIMES = 5
 # Retry on most error codes since proxies fail for different reasons
-RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+#RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
 
 # Proxy list containing entries like
 # http://host1:port
 # http://username:password@host2:port
 # http://host3:port
 # ...
-PROXY_LIST = 'Extractor/proxy.txt'
+#PROXY_LIST = 'Extractor/proxy.txt'
 
 # Proxy mode
 # 0 = Every requests have different proxy
 # 1 = Take only one proxy from the list and assign it to every requests
 # 2 = Put a custom proxy to use in the settings
-PROXY_MODE = 0
+#PROXY_MODE = 0
 
 # If proxy mode is 2 uncomment this sentence :
 #CUSTOM_PROXY = "http://host1:port"
@@ -56,7 +56,7 @@ PROXY_MODE = 0
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-COOKIES_ENABLED = False
+#COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -75,13 +75,13 @@ COOKIES_ENABLED = False
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
-    'random_useragent.RandomUserAgentMiddleware': 400,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
-    'scrapy_proxies.RandomProxy': 100,
-    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-}
+#DOWNLOADER_MIDDLEWARES = {
+#    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
+#    'random_useragent.RandomUserAgentMiddleware': 400,
+#    'scrapy.downloadermiddlewares.retry.RetryMiddleware': 90,
+#    'scrapy_proxies.RandomProxy': 100,
+#    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+#}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
