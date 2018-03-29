@@ -14,7 +14,7 @@ BOT_NAME = 'Extractor'
 SPIDER_MODULES = ['Extractor.spiders']
 NEWSPIDER_MODULE = 'Extractor.spiders'
 
-#LOG_LEVEL = 'INFO'
+LOG_LEVEL = 'INFO'
 USER_AGENT_LIST = "Extractor/agents.txt"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
